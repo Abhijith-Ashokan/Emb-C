@@ -9,12 +9,25 @@
  * 
  */
 
-
 #include "activity1.h"
 #include "activity2.h"
+#include "activity3.h"
 
 int main(void)
 {
+
+        /**
+     * @brief initiaising ports for led and switches
+     * 
+     */
+    port();
+    
+    /**
+     * @brief initializing port for PWM
+     * 
+     */
+    portPWM();
+
     /**
      * @brief initialising analog to digital conversion
      * 
@@ -27,17 +40,33 @@ int main(void)
      */
     uint16_t temp;
 
-    /**
-     * @brief initiaising ports for led and switches
-     * 
-     */
-    port();
-
     while(1)
     {
+      
+    /**
+     * @brief if person is seated and heater switch is pressed LED(Heater) will turn ON
+     * 
+     */
+
+      if((!((PIND)&SEATSWITCH))&& (!((PIND)&HeaterButton))) // SEAT SWITCH PRESSED AND HEATER SWITCH PRESSED
+      {
+
       LedBlink();
-      temp = ReadADC(0);
-      _delay_ms(200);
+
+     temp = ReadADC(0);
+     _delay_ms(200);
+     OCR1A = temp;
+     _delay_ms(200);
+
+      }
+
+
+      else
+      {
+        PORTB clear LED;
+      }
+
+
     }
 
     return 0;
