@@ -9,9 +9,10 @@
  * 
  */
 
-#include "activity1.h"
-#include "activity2.h"
-#include "activity3.h"
+#include "activityone.h"
+#include "activitytwo.h"
+#include "activitythree.h"
+#include "activityfour.h"
 
 
 int main(void)
@@ -35,11 +36,15 @@ int main(void)
      */
     InitADC();
 
+    USARTInit(103);
+
     /** 
      * @brief creating a temporary variable to store the Analog to Digital converted value
      *
      */
     uint16_t temp;
+
+
 
     while(1)
     {
@@ -57,7 +62,9 @@ int main(void)
       temp = ReadADC(0);
       _delay_ms(200);
       OCR1A = temp;
-     _delay_ms(200);
+       _delay_ms(200);
+      USARTWriteChar(temp);
+
 
       }
 
@@ -66,6 +73,7 @@ int main(void)
       {
         PORTB clear LED;
       }
+
 
     }
 
