@@ -9,9 +9,9 @@
  * 
  */
 
-#include "activityone.h"
-#include "activitytwo.h"
-#include "activitythree.h"
+#include "activity1.h"
+#include "activity2.h"
+#include "activity3.h"
 
 
 int main(void)
@@ -54,11 +54,10 @@ int main(void)
 
       LedBlink();
 
-        temp = ReadADC(0);
-        _delay_ms(200);
-        OCR1A = temp;
+      temp = ReadADC(0);
+      _delay_ms(200);
+      OCR1A = temp;
      _delay_ms(200);
-
 
       }
 
@@ -68,7 +67,6 @@ int main(void)
         PORTB clear LED;
       }
 
-    
     }
 
     return 0;
