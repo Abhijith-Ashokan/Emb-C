@@ -1,5 +1,5 @@
 /**
- * @file avtivity3.h
+ * @file activity3.h
  * @author Abhijith Ashokan (abhijithashokan99@gmail.com)
  * @brief headerfile for activity3.c containing function declerations and macros
  * @version 0.1
@@ -10,12 +10,11 @@
  */
 
 #ifndef _ACTIVITYTHREE__H_
-#define _ACTIVITYTHREE__H_
+    #define _ACTIVITYTHREE__H_
 
 
 #include <avr/io.h>
 #include <util/delay.h>
-
 
 #define NonInveringPWM (1<<COM1A1) 
 #define ModeSelection1 (1<<WGM10)
