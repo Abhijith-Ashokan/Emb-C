@@ -1,35 +1,43 @@
-#ifndef _ACTIVITYONE__H_                 //Header guards
-#define _ACTIVITYONE__h_
+#include "activityone.h"
 
-#include <avr/io.h>
-#include <util/delay.h>
-#include <avr/interrupt.h>
+unsigned volatile FLAG=0;
 
-/**
- * @brief defining macros
- * 
- */
+void port()
+{
+    DDRB set LED;   // set B0 for led
+    DDRD clear SEATSWITCH;  // clear bit
+    PORTD set SEATSWITCH;  // SET BIT
+    DDRD clear HeaterButton;   // clear bit
+    PORTD set HeaterButton;   //set bit
+    EICRA set InterruptType;  // set ISC01 HIGH
+    EIMSK set InterruptMask;  //set PIN D2 HIGH
 
-#define LED (1<<PB0)
-#define SEATSWITCH (1<<PD0)
-#define HeaterButton (1<<PD2)
-#define InterruptType ((1<<ISC01))
-#define InterruptMask (1<<INT0)
-#define set |=
-#define clear &=~
+    sei();
 
+}
 
-/**
- * @brief Declaring port function
- * 
- */
-void port();
+void LedBlink()
+{
+    /**
+     * @brief if person is seated and heater switch is pressed LED(Heater) will turn ON
+     * 
+     */
+      if((!((PIND)&SEATSWITCH))&& (FLAG == 1)) // both seat switch and heater switch pressed
+       {
+           PORTB set LED;
+            _delay_ms(2000);
+            FLAG=0;
+       }
+       else
+       {
+           PORTB clear LED;
 
-/**
- * @brief Declaring LedBlink function which turns on the heater
- * 
- */
+            // _delay_ms(20);
 
-void LedBlink();
+       }
+}
 
-#endif
+ISR(INT0_vect)
+{
+    FLAG =1;
+}
