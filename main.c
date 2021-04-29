@@ -9,10 +9,10 @@
  * 
  */
 
-#include "activityone.h"
-#include "activitytwo.h"
-#include "activitythree.h"
-#include "activityfour.h"
+#include "activity1.h"
+#include "activity2.h"
+#include "activity3.h"
+#include "activity4.h"
 
 
 int main(void)
@@ -44,8 +44,6 @@ int main(void)
      */
     uint16_t temp;
 
-
-
     while(1)
     {
       
@@ -65,9 +63,7 @@ int main(void)
        _delay_ms(200);
       USARTWriteChar(temp);
 
-
       }
-
 
       else
       {
